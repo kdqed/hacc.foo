@@ -14,8 +14,9 @@
   
   <meta property="og:image" content="/static/logo.png">
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#04161f">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <link rel="manifest" href="/static/manifest.json"/>
+  <meta name="theme-color" content="#121621">
   
   <link rel="shortcut icon" href="/static/favicon.png"/>
   
@@ -47,5 +48,8 @@
   <footer>
     Made by <a href="https://xqzk.io/">@xqzkio</a> 
   </footer>
+  <script>
+    navigator.serviceWorker && navigator.serviceWorker.register('/static/sw.js').then(function(registration) {console.log('SW registered with scope: ', registration.scope);});
+  </script>
 </body>
 </html>

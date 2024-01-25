@@ -1,0 +1,15 @@
+{
+  "name": "hacc.foo",
+  "short_name": "hacc.foo",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#121621",
+  "description": "Yet Another Hacker News app.",
+  "icons": [
+    {
+      "src": "/static/logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}
