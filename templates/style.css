@@ -29,7 +29,9 @@ body {
   background: var(--bg1);
   color: var(--fg1);
   font-size: var(--s4);
+  padding: 0;
   padding-bottom: 50vh;
+  margin: 0;
 }
 
 nav {
@@ -41,6 +43,15 @@ nav {
   padding: var(--s2);
   width: 100%;
   text-align: center;
+  position: fixed;
+  background: var(--bg1);
+  border: none;
+  border-bottom: var(--s-half) solid var(--bg2);
+}
+
+a:hover {
+  opacity: 0.7;
+  transition: opacity 0.1s ease-in;
 }
 
 nav a {
@@ -50,6 +61,7 @@ nav a {
 
 main {
   text-align: center;
+  padding-top: var(--s8);
 }
 
 #list {
@@ -66,10 +78,6 @@ main {
   border-bottom: 1px solid var(--bg2);
   padding: var(--s8) var(--s2);
   grid-gap: var(--s4);
-}
-
-.item-in-list:first-child {
-  border-top: 1px solid var(--bg2);
 }
 
 .item-in-list>a {
@@ -141,4 +149,12 @@ footer a {
 #hx-indicator-1.htmx-request {
   opacity: 0.5;
   display: block;
+}
+
+@media only screen and (max-width: 640px) {
+  nav {
+    bottom: 0;
+    border: none;
+    border-top: var(--s-half) solid var(--bg2);
+  }
 }
