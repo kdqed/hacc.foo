@@ -1,57 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  
-  <title>hacc.foo</title>
-  <meta property="og:title" content="hacc.foo" />
-  <meta name="twitter:title" content="hacc.foo" />
-  
-  <meta name="description" content="Yet Another Unofficial HackerNews Client">
-  <meta property="og:description" content="Yet Another Unofficial HackerNews Client">
-  
-  <meta name="keywords" content="HN Client, Hacker News Client, HN UI"/>
-  
-  <meta property="og:image" content="/static/logo.png">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <link rel="manifest" href="/static/manifest.json"/>
-  <meta name="theme-color" content="#121621">
-  
-  <link rel="shortcut icon" href="/static/favicon.png"/>
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
-  
-  <style>
-    {{template "style.css"}}
-  </style>
-  
-  <script src="https://unpkg.com/htmx.org@1.9.10"></script>
-</head>
-<body>
-  <nav>
-    <a href="/top" hx-get="/top" hx-target="#list" hx-push-url="true" hx-indicator="#hx-indicator-1">Top</a>
-    <a href="/new" hx-get="/new" hx-target="#list" hx-push-url="true" hx-indicator="#hx-indicator-1">New</a>
-    <a href="/best" hx-get="/best" hx-target="#list" hx-push-url="true" hx-indicator="#hx-indicator-1">Best</a>
-    <a href="/ask" hx-get="/ask" hx-target="#list" hx-push-url="true" hx-indicator="#hx-indicator-1">Ask</a>
-    <a href="/show" hx-get="/show" hx-target="#list" hx-push-url="true" hx-indicator="#hx-indicator-1">Show</a>
-    <a href="/job" hx-get="/job" hx-target="#list" hx-push-url="true" hx-indicator="#hx-indicator-1">Jobs</a>
-  </nav>
-  <main>
-    <div id="hx-indicator-1">loading...</div>
-    <div id="list">
-      {{template "list.html" .}}
-    </div>
-  </main>
-  <footer>
-    Made by <a href="https://xqzk.io/">@xqzkio</a> using HTMX & Go
-    </br></br>
-    <a href="https://github.com/xqzkio/hacc.foo">Open-Sourced on GitHub</a>
-  </footer>
-  <script>
-    navigator.serviceWorker && navigator.serviceWorker.register('/static/sw.js').then(function(registration) {console.log('SW registered with scope: ', registration.scope);});
-  </script>
-</body>
+  <head>
+    <meta charset="UTF-8">
+    <title>hacc.foo</title>
+    <meta property="og:title" content="hacc.foo">
+    <meta name="twitter:title" content="hacc.foo">
+    <meta name="description" content="Yet Another Unofficial HackerNews Client">
+    <meta property="og:description" content="Yet Another Unofficial HackerNews Client">
+    <meta name="keywords" content="HN Client, Hacker News Client, HN UI">
+    <meta property="og:image" content="/static/logo.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="manifest" href="/static/manifest.json">
+    <meta name="theme-color" content="#17181c">
+    <link rel="shortcut icon" href="/static/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+      {% include "style.css" %}
+    </style>
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+  </head>
+  <body>
+    <nav>
+      <a href="/top" hx-get="/top" hx-target="#list" hx-push-url="true" hx-indicator="#hx-indicator-1">Top</a>
+      <a href="/new" hx-get="/new" hx-target="#list" hx-push-url="true" hx-indicator="#hx-indicator-1">New</a>
+      <a href="/best" hx-get="/best" hx-target="#list" hx-push-url="true" hx-indicator="#hx-indicator-1">Best</a>
+      <a href="/ask" hx-get="/ask" hx-target="#list" hx-push-url="true" hx-indicator="#hx-indicator-1">Ask</a>
+      <a href="/show" hx-get="/show" hx-target="#list" hx-push-url="true" hx-indicator="#hx-indicator-1">Show</a>
+      <a href="/job" hx-get="/job" hx-target="#list" hx-push-url="true" hx-indicator="#hx-indicator-1">Jobs</a>
+    </nav>
+    <main>
+      <div id="hx-indicator-1">loading...</div>
+      <div id="content">
+        {{html_content | safe }}
+      </div>
+    </main>
+    <footer>
+      Made by
+      <a href="https://kdqed.com/">@kdqed</a>
+      using HTMX & Flask
+      <br><br>
+      <a href="https://github.com/kdqed/hacc.foo">Open-Sourced on GitHub</a>
+    </footer>
+    <script>
+      navigator.serviceWorker && navigator.serviceWorker.register('/static/sw.js').then(function(registration) {console.log('SW registered with scope: ', registration.scope);});
+    </script>
+  </body>
 </html>

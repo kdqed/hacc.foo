@@ -4,10 +4,10 @@
 }
 
 :root {
-  --bg1: #121621;
-  --bg2: #343740;
-  --t1: #2fb1a0;
-  --fg1: #bcc3d0;
+  --bg1: #17181c;
+  --bg2: #353841;
+  --t1: #46aab9;
+  --fg1: #abb4c4;
   
   --s1: clamp(4px, 0.4vw, 8px);
   --s2: calc(var(--s1)*2);
@@ -64,11 +64,17 @@ main {
   padding-top: var(--s8);
 }
 
+#content {
+  padding: var(--s2);
+  display: inline-block;
+  width: 100%;
+  max-width: 960px;
+  min-height: 55vh;
+}
+
 #list {
   display: inline-grid;
   width: 100%;
-  max-width: 960px;
-  padding: var(--s2);
 }
 
 .item-in-list {
@@ -87,14 +93,14 @@ main {
   font-size: var(--s6);
 }
 
-.item-in-list .meta {
+.item-in-list .meta, .item-content .meta {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: var(--s6);
 }
 
-.item-in-list .meta>a {
+.item-in-list .meta>a, .item-content .meta>a {
   display: inline-flex;
   color: inherit;
   align-items: center;
@@ -103,7 +109,7 @@ main {
   font-size: var(--s4);  
 }
 
-.item-in-list .meta>a svg {
+.item-in-list .meta>a svg, .item-content .meta>a svg {
   width: var(--s5);
   height: var(--s5)
 }

@@ -1,40 +1,44 @@
-{{$itemsList := index . 1}}
-{{range $index, $item := $itemsList.Items}}
-<div class="item-in-list">
-  <a href="{{index $item "url"}}" target="_blank">{{index $item "title"}}</a>
-  <div class="meta">
-    <a href="https://news.ycombinator.com/vote?id={{index $item "id"}}&how=up&goto=news"
-      target="_blank"
-      title="Upvote">
-      <svg stroke-width="1.4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor"><path d="M11.5757 1.42426C11.81 1.18995 12.1899 1.18995 12.4243 1.42426L22.5757 11.5757C22.81 11.81 22.8101 12.1899 22.5757 12.4243L12.4243 22.5757C12.19 22.81 11.8101 22.8101 11.5757 22.5757L1.42426 12.4243C1.18995 12.19 1.18995 11.8101 1.42426 11.5757L11.5757 1.42426Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12 7L16 11M12 7L8 11.1667M12 7L12 16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-      <span>{{index $item "score"}}</span>
+<div id='list'>
+  {% for item in result['items'] %}
+  <div class="item-in-list">
+    <a
+      href="/item/{{item['id']}}"
+      hx-get="/item/{{item['id']}}"
+      hx-target="#content"
+    >
+      {{item['title']}}
     </a>
-    <a href="https://news.ycombinator.com/user?id={{index $item "by"}}"
-      target="_blank">
-      <svg stroke-width="1.6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor"><path d="M5 20V19C5 15.134 8.13401 12 12 12V12C15.866 12 19 15.134 19 19V20" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12 12C14.2091 12 16 10.2091 16 8C16 5.79086 14.2091 4 12 4C9.79086 4 8 5.79086 8 8C8 10.2091 9.79086 12 12 12Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-      <span>{{index $item "by"}}</span>
-    </a>
-    <a href="https://news.ycombinator.com/item?id={{index $item "id"}}"
-      target="_blank">
-      <svg stroke-width="1.6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor"><path d="M3 20.2895V5C3 3.89543 3.89543 3 5 3H19C20.1046 3 21 3.89543 21 5V15C21 16.1046 20.1046 17 19 17H7.96125C7.35368 17 6.77906 17.2762 6.39951 17.7506L4.06852 20.6643C3.71421 21.1072 3 20.8567 3 20.2895Z" stroke="currentColor" stroke-width="1.6"></path></svg>
-      <span>{{index $item "descendants"}}</span>
-    </a>
-    <a href="https://news.ycombinator.com/item?id={{index $item "id"}}"
-      target="_blank">
-      <svg stroke-width="1.6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor"><path d="M12 6L12 12L18 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-      <span>{{index $item "displayTime"}} ago</span>
-    </a>
+    <div class="meta">
+      <a href="https://news.ycombinator.com/vote?id={{item['id']}}&how=up&goto=news" target="_blank" title="Upvote">
+        <svg stroke-width="1.4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor"><path d="M11.5757 1.42426C11.81 1.18995 12.1899 1.18995 12.4243 1.42426L22.5757 11.5757C22.81 11.81 22.8101 12.1899 22.5757 12.4243L12.4243 22.5757C12.19 22.81 11.8101 22.8101 11.5757 22.5757L1.42426 12.4243C1.18995 12.19 1.18995 11.8101 1.42426 11.5757L11.5757 1.42426Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12 7L16 11M12 7L8 11.1667M12 7L12 16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        <span>{{item['score']}}</span>
+      </a>
+      <a href="https://news.ycombinator.com/user?id={{item['by']}}" target="_blank">
+        <svg stroke-width="1.6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor"><path d="M5 20V19C5 15.134 8.13401 12 12 12V12C15.866 12 19 15.134 19 19V20" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12 12C14.2091 12 16 10.2091 16 8C16 5.79086 14.2091 4 12 4C9.79086 4 8 5.79086 8 8C8 10.2091 9.79086 12 12 12Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        <span>{{item['by']}}</span>
+      </a>
+      <a href="https://news.ycombinator.com/item?id={{item['id']}}" target="_blank">
+        <svg stroke-width="1.6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor"><path d="M3 20.2895V5C3 3.89543 3.89543 3 5 3H19C20.1046 3 21 3.89543 21 5V15C21 16.1046 20.1046 17 19 17H7.96125C7.35368 17 6.77906 17.2762 6.39951 17.7506L4.06852 20.6643C3.71421 21.1072 3 20.8567 3 20.2895Z" stroke="currentColor" stroke-width="1.6"></path></svg>
+        <span>{{item['descendants']}}</span>
+      </a>
+      <a href="https://news.ycombinator.com/item?id={{item['id']}}" target="_blank">
+        <svg stroke-width="1.6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor"><path d="M12 6L12 12L18 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        <span>{{item['display_time']}} ago</span>
+      </a>
+    </div>
   </div>
-</div>
-{{end}}
+  {% endfor %}
 
-{{if ne $itemsList.NextPageStartId -1}}
-<a id="load-more" 
-  href="/{{index . 0}}?startId={{$itemsList.NextPageStartId}}"
-  hx-get="/{{index . 0}}?startId={{$itemsList.NextPageStartId}}"
-  hx-swap="outerHTML"
-  hx-push-url="true">
-  <span>More</span>
-  <small>loading...</small>
-</a>
-{{end}}
+  {% if result['next_page_start_id'] != -1  %}
+  <a
+    id="load-more"
+    href="/{{story_type}}?start_id={{result['next_page_start_id']}}"
+    hx-get="/{{story_type}}?start_id={{result['next_page_start_id']}}"
+    hx-swap="outerHTML"
+    hx-push-url="true"
+  >
+    <span>More</span>
+    <small>loading...</small>
+  </a>
+  {% endif %}
+</div>
