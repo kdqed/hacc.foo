@@ -5,6 +5,7 @@
       href="/item/{{item['id']}}"
       hx-get="/item/{{item['id']}}"
       hx-target="#content"
+      hx-push-url="true"
     >
       {{item['title']}}
     </a>
